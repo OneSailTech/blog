@@ -1,11 +1,42 @@
+---
+export interface Props {
+    title?: string;
+    description?: string;
+    image?: string;
+}
+
+const {
+    title = '1FanX的博客',
+    description = '1FanX 的个人博客 — 分享技术、设计与生活随笔',
+    image = '/favicon.jpeg',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const fullImage = new URL(image, Astro.site).href;
+---
+
 <!doctype html>
 <html lang="zh-CN">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/jpeg" href="/favicon.jpeg" />
+		<title>{title}</title>
+		<link rel="canonical" href={canonicalURL.href} />
+		<meta name="description" content={description} />
 		<meta name="generator" content="1Fan" />
-		<title>1FanX的博客</title>
+
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL.href} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={fullImage} />
+		<meta property="og:locale" content="zh_CN" />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={fullImage} />
 	</head>
 	<body>
 		<slot />
