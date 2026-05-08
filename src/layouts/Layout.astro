@@ -6,8 +6,8 @@ export interface Props {
 }
 
 const {
-    title = 'XIE YIFAN 的博客',
-    description = 'XIE YIFAN 的个人博客 — 分享技术、设计与生活随笔',
+    title = 'XIE YIFAN',
+    description = 'XIE YIFAN 的个人网站 — 分享技术、设计与生活随笔',
     image = '/favicon.jpeg',
 } = Astro.props;
 
@@ -39,15 +39,37 @@ const fullImage = new URL(image, Astro.site).href;
 		<meta name="twitter:image" content={fullImage} />
 	</head>
 	<body>
+		<div class="bg-waves">
+			<img src="/background.svg" alt="" class="bg-wave-img" />
+		</div>
 		<slot />
 	</body>
 </html>
 
-<style>
+<style is:global>
 	html,
 	body {
 		margin: 0;
 		width: 100%;
-		height: 100%;
+		min-height: 100%;
+	}
+
+	body {
+		position: relative;
+	}
+
+	.bg-waves {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		z-index: -1;
+		pointer-events: none;
+	}
+
+	.bg-wave-img {
+		width: 100%;
+		height: auto;
+		opacity: 0.5;
 	}
 </style>
