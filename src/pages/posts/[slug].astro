@@ -277,6 +277,22 @@ const { Content } = await render(post);
         border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
+    .post-content :global(th),
+    .post-content :global(td) {
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .post-content :global(th:last-child),
+    .post-content :global(td:last-child) {
+        width: 100%;
+    }
+
+    .post-content :global(th) {
+        background: rgba(255, 255, 255, 0.05);
+        font-weight: 600;
+    }
+
     .post-content :global(pre code) {
         background: none;
         padding: 0;
