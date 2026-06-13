@@ -6,8 +6,8 @@ export interface Props {
 }
 
 const {
-    title = 'XIE YIFAN',
-    description = 'XIE YIFAN 的个人网站 — 分享技术、设计与生活随笔',
+    title = 'OneSail Tech',
+    description = 'OneSail Tech 的个人网站 — 分享技术、设计与生活随笔',
     image = '/favicon.jpeg',
 } = Astro.props;
 
@@ -41,7 +41,7 @@ const fullImage = new URL(image, Astro.site).href;
 	<body>
 		<slot />
 		<footer class="site-footer">
-			<p>© {new Date().getFullYear()} XIE YIFAN. All rights reserved.</p>
+			<p>© {new Date().getFullYear()} OneSail Tech. All rights reserved.</p>
 		</footer>
 		<div class="bg-waves">
 			<img src="/background.svg" alt="" class="bg-wave-img" />
