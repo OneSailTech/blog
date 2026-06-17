@@ -26,7 +26,9 @@ const awards = [
 ];
 
 const education = [
-    { school: "江西职业技术大学", major: "计算机科学与技术", period: "2023 - 2027" },
+    { school: "江西工程学院", major: "计算机科学与技术（本科）", period: "2025 - 2027" },
+    { school: "江西职业技术大学", major: "移动互联应用技术（大专）", period: "2023 - 2025" },
+    { school: "江西省电子信息工程学校", major: "计算机网络技术（中专）", period: "2019 - 2022" },
 ];
 
 const allCerts = [
@@ -212,17 +214,6 @@ const allCerts = [
             font-size: 0.8rem;
             margin-left: 8px;
             flex-shrink: 0;
-        }
-
-        .award-item .award-tag {
-            font-size: 0.75rem;
-            color: #2563eb;
-            background: rgba(37, 99, 235, 0.08);
-            padding: 2px 10px;
-            border-radius: 20px;
-            margin-left: 8px;
-            flex-shrink: 0;
-            white-space: nowrap;
         }
 
         .edu-list {
@@ -421,7 +412,6 @@ const allCerts = [
                     {awards.map((award) => (
                         <li class={`award-item${award.certIndex >= 0 ? ' has-cert' : ''}`} data-cert-index={award.certIndex}>
                             {award.title}
-                            <span class="award-tag">{award.tag}</span>
                         </li>
                     ))}
                 </ul>
