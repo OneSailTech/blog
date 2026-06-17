@@ -21,6 +21,9 @@ const fullImage = new URL(image, Astro.site).href;
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/jpeg" href="/favicon.jpeg" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 		<title>{title}</title>
 		<link rel="canonical" href={canonicalURL.href} />
 		<meta name="description" content={description} />
@@ -56,6 +59,7 @@ const fullImage = new URL(image, Astro.site).href;
 		width: 100%;
 		min-height: 100%;
 		background-color: #0a0a0a;
+		font-family: "SF Pro Display", "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
 	}
 
 	body {
