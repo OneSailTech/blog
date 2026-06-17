@@ -1,89 +1,394 @@
 ---
-import Layout from '../layouts/Layout.astro';
+const name = "OneSail Tech";
+const email = "hello@20051201.xyz";
+const avatar = "/favicon.jpeg";
+
+const techStack = [
+    "Vue.js",
+    "Flutter",
+    "TypeScript",
+    "Node.js",
+    "Astro",
+    "UI/UX Design",
+];
 
 const awards = [
-    {
-        title: '入围第48届世界技能大赛移动应用开发中国集训队',
-        tag: '入围集训队',
-    },
-    {
-        title: '第48届世界技能大赛中国集训队集中性考核暨测试赛移动应用开发赛项',
-        tag: '第六名',
-    },
-    {
-        title: '中华人民共和国第三届职业技能大赛移动应用开发赛项',
-        tag: '第六名',
-    },
-    {
-        title: '2024至2025学年国家奖学金',
-        tag: '国家奖学金',
-    },
-    {
-        title: '计算机程序设计员职业技能等级',
-        tag: '高级技师',
-    },
-    {
-        title: '2023至2024学年国家励志奖学金',
-        tag: '国家励志奖学金',
-    },
-    {
-        title: '一带一路暨金砖国家技能发展与技术创新大赛——Web赛项',
-        tag: '三等奖',
-    },
-    {
-        title: '江西省第二届职业技能大赛移动应用开发赛项',
-        tag: '第一名',
-    },
-    {
-        title: '江西省第一届职业技能大赛网站设计与开发赛项',
-        tag: '第二名',
-    },
-    {
-        title: '九江市第三届职业技能大赛移动应用开发赛项',
-        tag: '第一名',
-    },
+    { title: "入围第48届世界技能大赛移动应用开发中国集训队", tag: "入围集训队", certIndex: -1 },
+    { title: "第48届世界技能大赛中国集训队集中性考核暨测试赛移动应用开发赛项", tag: "第六名", certIndex: -1 },
+    { title: "中华人民共和国第三届职业技能大赛移动应用开发赛项", tag: "第六名", certIndex: 2 },
+    { title: "2024至2025学年国家奖学金", tag: "国家奖学金", certIndex: 0 },
+    { title: "计算机程序设计员职业技能等级", tag: "高级技师", certIndex: -1 },
+    { title: "2023至2024学年国家励志奖学金", tag: "国家励志奖学金", certIndex: 1 },
+    { title: "一带一路暨金砖国家技能发展与技术创新大赛——Web赛项", tag: "三等奖", certIndex: 3 },
+    { title: "江西省第二届职业技能大赛移动应用开发赛项", tag: "第一名", certIndex: 4 },
+    { title: "江西省第一届职业技能大赛网站设计与开发赛项", tag: "第二名", certIndex: 5 },
+    { title: "九江市第三届职业技能大赛移动应用开发赛项", tag: "第一名", certIndex: 6 },
 ];
 
-const certificates = [
-    {
-        image: '/certificates/gjjxj.jpeg',
-    },
-    {
-        image: '/certificates/gjlzjxj.jpeg',
-    },
-    {
-        image: '/certificates/zhrmghgdsjzyjnds.jpeg',
-    },
-    {
-        image: '/certificates/ydyljjzgjjnfzyjscxds.jpeg',
-    },
-    {
-        image: '/certificates/jxsdejzyjnds.jpeg',
-    },
-    {
-        image: '/certificates/jxsdyjzyjnds.jpeg',
-    },
-    {
-        image: '/certificates/jjsdsjchjjzyjnds.jpeg',
-    },
-    {
-        image: '/certificates/jxzyjsdxdwjcxsjds.jpeg',
-    },
-    {
-        image: '/certificates/jxzyjsdxydjxj1.jpeg',
-    },
-    {
-        image: '/certificates/jxzyjsdxydjxj2.jpeg',
-    },
+const education = [
+    { school: "江西职业技术大学", major: "计算机科学与技术", period: "2023 - 2027" },
 ];
 
-const certsLeft = certificates.filter((_, i) => i % 2 === 0);
-const certsRight = certificates.filter((_, i) => i % 2 === 1);
+const allCerts = [
+    "/certificates/gjjxj.jpeg",
+    "/certificates/gjlzjxj.jpeg",
+    "/certificates/zhrmghgdsjzyjnds.jpeg",
+    "/certificates/ydyljjzgjjnfzyjscxds.jpeg",
+    "/certificates/jxsdejzyjnds.jpeg",
+    "/certificates/jxsdyjzyjnds.jpeg",
+    "/certificates/jjsdsjchjjzyjnds.jpeg",
+    "/certificates/jxzyjsdxdwjcxsjds.jpeg",
+    "/certificates/jxzyjsdxydjxj1.jpeg",
+    "/certificates/jxzyjsdxydjxj2.jpeg",
+];
 ---
 
-<Layout title="关于 - OneSail Tech" description="关于 OneSail Tech — 个人介绍、荣誉与证书">
-<div id="container">
-    <div class="spotlight"></div>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>关于 - OneSail Tech</title>
+    <meta name="description" content="关于 OneSail Tech — 个人介绍、荣誉与证书">
+    <link rel="icon" type="image/jpeg" href="/favicon.jpeg" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.3/viewer.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        html {
+            overflow-x: hidden;
+            scrollbar-gutter: stable;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #999; }
+        * { scrollbar-width: thin; scrollbar-color: #ccc transparent; }
+
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        /* ===== Nav ===== */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 8vw;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 32px;
+            width: 32px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+        }
+
+        .nav-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #2563eb;
+        }
+
+        /* ===== Layout ===== */
+        .layout {
+            display: flex;
+            width: 100%;
+            min-height: calc(100vh - 80px);
+        }
+
+        .left-panel {
+            flex: 0 0 60%;
+            padding: 6vh 3vw 6vh 8vw;
+            display: flex;
+            flex-direction: column;
+            gap: 4vh;
+        }
+
+        .header .name {
+            font-size: clamp(3rem, 5vw, 5rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 0.5vh;
+        }
+
+        .header .email {
+            font-size: 1.1rem;
+            color: #666;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .header .email:hover {
+            color: #2563eb;
+        }
+
+        .section-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #999;
+            margin-bottom: 1.5vh;
+            font-weight: 600;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5vh;
+            border-left: 3px solid #2563eb;
+            padding-left: 10px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-stack span {
+            font-size: 0.9rem;
+            padding: 6px 16px;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            color: #333;
+        }
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5vh 2vw;
+            list-style: none;
+        }
+
+        .award-item {
+            font-size: 0.95rem;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+            transition: all 0.2s;
+            line-height: 1.4;
+        }
+
+        .award-item.has-cert {
+            cursor: pointer;
+        }
+
+        .award-item.has-cert:hover {
+            color: #2563eb;
+            border-bottom-color: #2563eb;
+        }
+
+        .award-item.has-cert::after {
+            content: '↗';
+            color: #ccc;
+            font-size: 0.8rem;
+            margin-left: 8px;
+            flex-shrink: 0;
+        }
+
+        .award-item .award-tag {
+            font-size: 0.75rem;
+            color: #2563eb;
+            background: rgba(37, 99, 235, 0.08);
+            padding: 2px 10px;
+            border-radius: 20px;
+            margin-left: 8px;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .edu-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5vh;
+        }
+
+        .edu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-left: 4px solid #2563eb;
+            padding-left: 12px;
+        }
+
+        .edu-school {
+            font-weight: bold;
+            font-size: 1.05rem;
+        }
+
+        .edu-major {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 2px;
+        }
+
+        .edu-time {
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .right-panel {
+            flex: 0 0 40%;
+            height: calc(100vh - 80px);
+            position: sticky;
+            top: 80px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+        }
+
+        .portrait {
+            width: auto;
+            height: 90vh;
+            max-width: 100%;
+            object-fit: contain;
+            object-position: bottom;
+        }
+
+        #gallery {
+            display: none;
+        }
+
+        /* ===== Animations ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .layout {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .left-panel > * {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .left-panel > *:nth-child(1) { animation-delay: 0.1s; }
+        .left-panel > *:nth-child(2) { animation-delay: 0.2s; }
+        .left-panel > *:nth-child(3) { animation-delay: 0.3s; }
+        .left-panel > *:nth-child(4) { animation-delay: 0.4s; }
+        .left-panel > *:nth-child(5) { animation-delay: 0.5s; }
+
+        .right-panel {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out 0.3s forwards;
+        }
+
+        /* ===== Hover effects ===== */
+        .tech-stack span {
+            transition: transform 0.2s, background 0.2s, color 0.2s, border-color 0.2s;
+            cursor: default;
+        }
+
+        .tech-stack span:hover {
+            transform: translateY(-3px);
+            background: #2563eb;
+            color: #fff;
+            border-color: #2563eb;
+        }
+
+        .award-item.has-cert {
+            transition: transform 0.2s, border-color 0.2s, color 0.2s;
+        }
+
+        .award-item.has-cert:hover {
+            transform: translateX(3px);
+        }
+
+        .edu-item {
+            transition: transform 0.2s;
+        }
+
+        .edu-item:hover {
+            transform: translateX(5px);
+        }
+
+        .portrait {
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .portrait:hover {
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 900px) {
+            nav {
+                padding: 1rem 5vw;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+            .nav-links a {
+                font-size: 0.8rem;
+            }
+            .layout {
+                flex-direction: column-reverse;
+                display: flex;
+            }
+            .left-panel {
+                flex: none;
+                width: 100%;
+                padding: 4vh 6vw 10vh 6vw;
+            }
+            .header {
+                text-align: center;
+            }
+            .right-panel {
+                flex: none;
+                width: 100%;
+                height: 60vh;
+                position: relative;
+                top: 0;
+                justify-content: center;
+            }
+            .portrait {
+                height: 100%;
+            }
+            .awards-grid {
+                grid-template-columns: 1fr;
+            }
+            .edu-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
 
     <nav>
         <a href="/" class="logo"><img src="/favicon.jpeg" alt="Logo" class="logo-img" /></a>
@@ -96,571 +401,84 @@ const certsRight = certificates.filter((_, i) => i % 2 === 1);
         </div>
     </nav>
 
-    <main>
-        <section id="about-hero">
-            <div class="avatar-wrapper">
-                <img src="/favicon.jpeg" alt="Avatar" class="avatar-img" />
+    <div class="layout">
+        <section class="left-panel">
+            <div class="header">
+                <h1 class="name">{name}</h1>
+                <a class="email" href={`mailto:${email}`}>{email}</a>
             </div>
-            <h1>关于 <span class="gradient-text">OneSail Tech</span></h1>
-            <p class="subtitle">
-                一名热爱技术与设计的创作者，专注于程序开发与用户体验设计。<br />
-                相信好的代码如同好的文字——简洁、优雅、有力量。
-            </p>
-        </section>
 
-        <section id="details">
-            <div class="detail-card">
-                <div class="detail-icon">💡</div>
-                <h3>技术探索者</h3>
-                <p>持续学习各类技术栈，从 Vue 到 Flutter，追求最佳的开发体验与性能表现。</p>
-            </div>
-            <div class="detail-card">
-                <div class="detail-icon">🎨</div>
-                <h3>设计践行者</h3>
-                <p>关注 UI/UX 设计，善于将设计思维融入开发流程，让产品既好用又好看。</p>
-            </div>
-            <div class="detail-card">
-                <div class="detail-icon">📝</div>
-                <h3>知识分享者</h3>
-                <p>通过博客记录学习心得与项目经验，在分享中加深理解，在交流中共同成长。</p>
-            </div>
-        </section>
-
-        <section id="awards">
-            <h2 class="section-title">荣誉</h2>
-            <div class="awards-grid">
-                {awards.map((award) => (
-                <div class="award-card">
-                    <div class="award-info">
-                        <h3>{award.title}</h3>
-                        <span class="award-tag">{award.tag}</span>
-                    </div>
+            <div>
+                <div class="section-title">技术栈 / Technical Stack</div>
+                <div class="tech-stack">
+                    {techStack.map(s => <span>{s}</span>)}
                 </div>
-                ))}
             </div>
-        </section>
 
-        {certificates.length > 0 && (
-        <section id="certificates">
-            <h2 class="section-title">证书</h2>
-            <div class="cert-grid">
-                <div class="cert-col">
-                    {certsLeft.map((cert) => (
-                    <div class="cert-card" onclick="openLightbox(this.querySelector('img').src)">
-                        <img src={cert.image} alt={cert.title} loading="lazy" />
-                        {cert.title && <div class="cert-name">{cert.title}</div>}
-                    </div>
+            <div>
+                <div class="section-title">获奖列表 / Awards</div>
+                <ul class="awards-grid">
+                    {awards.map((award) => (
+                        <li class={`award-item${award.certIndex >= 0 ? ' has-cert' : ''}`} data-cert-index={award.certIndex}>
+                            {award.title}
+                            <span class="award-tag">{award.tag}</span>
+                        </li>
                     ))}
-                </div>
-                <div class="cert-col">
-                    {certsRight.map((cert) => (
-                    <div class="cert-card" onclick="openLightbox(this.querySelector('img').src)">
-                        <img src={cert.image} alt={cert.title} loading="lazy" />
-                        {cert.title && <div class="cert-name">{cert.title}</div>}
-                    </div>
+                </ul>
+            </div>
+
+            <div>
+                <div class="section-title">教育背景 / Education</div>
+                <div class="edu-list">
+                    {education.map(e => (
+                        <div class="edu-item">
+                            <div>
+                                <div class="edu-school">{e.school}</div>
+                                <div class="edu-major">{e.major}</div>
+                            </div>
+                            <div class="edu-time">{e.period}</div>
+                        </div>
                     ))}
                 </div>
             </div>
         </section>
-        )}
 
-        <div id="lightbox" onclick="closeLightbox()">
-            <button id="lightbox-close" onclick="event.stopPropagation(); closeLightbox()">✕</button>
-            <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()" />
-        </div>
-
-        <section id="contact">
-            <a href="/" class="button primary">返回首页</a>
+        <section class="right-panel">
+            <img src={avatar} alt="Profile" class="portrait" />
         </section>
-    </main>
-</div>
+    </div>
 
-<script is:inline>
-function openLightbox(src) {
-    const lb = document.getElementById('lightbox');
-    const img = document.getElementById('lightbox-img');
-    img.src = src;
-    lb.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    resetZoom();
-}
-function closeLightbox() {
-    const lb = document.getElementById('lightbox');
-    lb.classList.remove('active');
-    document.body.style.overflow = '';
-    resetZoom();
-}
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeLightbox();
-});
+    <div id="gallery">
+        {allCerts.map(src => <img src={src} alt="" />)}
+    </div>
 
-let scale = 1;
-let panning = false;
-let startX = 0, startY = 0;
-let translateX = 0, translateY = 0;
-let initialPinchDist = 0;
-let initialScale = 1;
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.3/viewer.min.js">
+    </script>
+    <script>
+        const galleryElement = document.getElementById('gallery');
 
-function resetZoom() {
-    scale = 1;
-    translateX = 0;
-    translateY = 0;
-    applyTransform();
-}
+        const viewer = new Viewer(galleryElement, {
+            url: 'src',
+            toolbar: true,
+            navbar: false,
+            zoomable: true,
+            scalable: true,
+            rotatable: true,
+            movable: true,
+            transition: true,
+            fullscreen: true,
+            shown() { document.documentElement.style.overflow = 'hidden'; },
+            hidden() { document.documentElement.style.overflow = ''; },
+        });
 
-function applyTransform() {
-    const img = document.getElementById('lightbox-img');
-    if (img) {
-        img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-        img.style.transition = scale === 1 ? 'transform 0.3s ease' : 'none';
-        img.style.cursor = scale > 1 ? 'grab' : 'zoom-out';
-    }
-}
-
-const lb = document.getElementById('lightbox');
-const lbImg = document.getElementById('lightbox-img');
-
-lb.addEventListener('wheel', (e) => {
-    e.preventDefault();
-    const delta = e.deltaY > 0 ? -0.1 : 0.1;
-    scale = Math.min(Math.max(1, scale + delta), 5);
-    if (scale === 1) { translateX = 0; translateY = 0; }
-    applyTransform();
-}, { passive: false });
-
-lb.addEventListener('touchstart', (e) => {
-    if (e.touches.length === 2) {
-        initialPinchDist = Math.hypot(
-            e.touches[0].clientX - e.touches[1].clientX,
-            e.touches[0].clientY - e.touches[1].clientY
-        );
-        initialScale = scale;
-    } else if (e.touches.length === 1 && scale > 1) {
-        panning = true;
-        startX = e.touches[0].clientX - translateX;
-        startY = e.touches[0].clientY - translateY;
-        lbImg.style.cursor = 'grabbing';
-    }
-}, { passive: true });
-
-lb.addEventListener('touchmove', (e) => {
-    if (e.touches.length === 2) {
-        const dist = Math.hypot(
-            e.touches[0].clientX - e.touches[1].clientX,
-            e.touches[0].clientY - e.touches[1].clientY
-        );
-        scale = Math.min(Math.max(1, initialScale * (dist / initialPinchDist)), 5);
-        if (scale === 1) { translateX = 0; translateY = 0; }
-        applyTransform();
-    } else if (panning && e.touches.length === 1) {
-        translateX = e.touches[0].clientX - startX;
-        translateY = e.touches[0].clientY - startY;
-        applyTransform();
-    }
-}, { passive: true });
-
-lb.addEventListener('touchend', () => { panning = false; });
-
-lbImg.addEventListener('mousedown', (e) => {
-    if (scale > 1) {
-        panning = true;
-        startX = e.clientX - translateX;
-        startY = e.clientY - translateY;
-        lbImg.style.cursor = 'grabbing';
-        e.preventDefault();
-    }
-});
-
-document.addEventListener('mousemove', (e) => {
-    if (panning) {
-        translateX = e.clientX - startX;
-        translateY = e.clientY - startY;
-        applyTransform();
-    }
-});
-
-document.addEventListener('mouseup', () => {
-    panning = false;
-    if (lbImg) lbImg.style.cursor = scale > 1 ? 'grab' : 'zoom-out';
-});
-</script>
-
-<style>
-    :root {
-        --accent: #7c3aed;
-        --accent-gradient: linear-gradient(45deg, #7c3aed, #ff1fb1);
-        --bg-color: #0a0a0a;
-        --text-main: #ffffff;
-        --text-muted: #a1a1aa;
-    }
-
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-
-    body {
-        background-color: var(--bg-color);
-        color: var(--text-main);
-        font-family: 'Inter', 'SF Pro Display', system-ui, sans-serif;
-        overflow-x: hidden;
-    }
-
-    #container {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        z-index: 1;
-    }
-
-    .spotlight {
-        position: fixed;
-        top: -30%;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 150vw;
-        height: 150vh;
-        background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.12) 0%, rgba(124, 58, 237, 0.03) 50%, rgba(0, 0, 0, 0) 80%);
-        z-index: -1;
-        pointer-events: none;
-    }
-
-    nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 2rem 10%;
-        animation: fadeInUp 0.8s ease-out;
-    }
-
-    .logo {
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-    }
-
-    .logo-img {
-        height: 36px;
-        width: 36px;
-        object-fit: cover;
-        border-radius: 50%;
-    }
-
-    .nav-links a {
-        color: var(--text-muted);
-        text-decoration: none;
-        margin-left: 2rem;
-        font-size: 0.9rem;
-        transition: color 0.3s;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-        color: var(--text-main);
-    }
-
-    main {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 2rem 1rem 4rem;
-    }
-
-    #about-hero {
-        text-align: center;
-        max-width: 700px;
-        animation: fadeInUp 0.8s ease-out;
-        margin-bottom: 4rem;
-    }
-
-    .avatar-wrapper {
-        margin-bottom: 2rem;
-    }
-
-    .avatar-img {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        object-fit: cover;
-        box-shadow: 0 0 40px rgba(124, 58, 237, 0.3);
-    }
-
-    h1 {
-        font-size: clamp(2.5rem, 8vw, 4.5rem);
-        font-weight: 800;
-        line-height: 1.1;
-        margin-bottom: 1.5rem;
-    }
-
-    .gradient-text {
-        background: var(--accent-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .subtitle {
-        font-size: 1.15rem;
-        color: var(--text-muted);
-        line-height: 1.8;
-    }
-
-    #details {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
-        max-width: 900px;
-        width: 100%;
-        margin-bottom: 5rem;
-        animation: fadeInUp 0.8s ease-out 0.15s both;
-    }
-
-    .detail-card {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 20px;
-        padding: 2rem 1.5rem;
-        text-align: center;
-        transition: all 0.3s;
-        backdrop-filter: blur(10px);
-    }
-
-    .detail-card:hover {
-        border-color: var(--accent);
-        background: rgba(255, 255, 255, 0.05);
-        transform: translateY(-4px);
-    }
-
-    .detail-icon {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-    }
-
-    .detail-card h3 {
-        font-size: 1.05rem;
-        margin-bottom: 0.6rem;
-    }
-
-    .detail-card p {
-        font-size: 0.85rem;
-        color: var(--text-muted);
-        line-height: 1.6;
-    }
-
-    #awards {
-        width: 100%;
-        max-width: 900px;
-        margin-bottom: 4rem;
-        animation: fadeInUp 0.8s ease-out 0.3s both;
-    }
-
-    .section-title {
-        text-align: center;
-        font-size: 2rem;
-        font-weight: 800;
-        margin-bottom: 2.5rem;
-    }
-
-    .awards-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
-
-    .award-card {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 20px;
-        padding: 1.8rem;
-        transition: all 0.3s;
-        backdrop-filter: blur(10px);
-    }
-
-    .award-card:hover {
-        border-color: var(--accent);
-        background: rgba(255, 255, 255, 0.05);
-        transform: translateY(-4px);
-    }
-
-    .award-info h3 {
-        font-size: 1rem;
-        margin-bottom: 0.4rem;
-    }
-
-    .award-tag {
-        display: inline-block;
-        background: rgba(124, 58, 237, 0.1);
-        border: 1px solid rgba(124, 58, 237, 0.3);
-        color: #a78bfa;
-        padding: 2px 10px;
-        border-radius: 20px;
-        font-size: 0.85rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .award-info p {
-        font-size: 0.85rem;
-        color: var(--text-muted);
-        line-height: 1.5;
-    }
-
-    #certificates {
-        width: 100%;
-        max-width: 900px;
-        margin-bottom: 4rem;
-        animation: fadeInUp 0.8s ease-out 0.4s both;
-    }
-
-    .cert-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1.2rem;
-        align-items: start;
-    }
-
-    .cert-col {
-        display: flex;
-        flex-direction: column;
-        gap: 1.2rem;
-    }
-
-    .cert-card {
-        border-radius: 16px;
-        overflow: hidden;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        transition: all 0.35s;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .cert-card img {
-        width: 100%;
-        height: auto;
-        display: block;
-    }
-
-    .cert-card:hover {
-        border-color: rgba(124, 58, 237, 0.4);
-        transform: translateY(-3px);
-        box-shadow: 0 12px 40px rgba(124, 58, 237, 0.1);
-    }
-
-    .cert-name {
-        padding: 0.7rem 1rem;
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: var(--text-muted);
-    }
-
-    #lightbox {
-        position: fixed;
-        inset: 0;
-        z-index: 9999;
-        background: rgba(0, 0, 0, 0.9);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s, visibility 0.3s;
-        cursor: zoom-out;
-    }
-
-    #lightbox.active {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    #lightbox img {
-        max-width: 92vw;
-        max-height: 92vh;
-        object-fit: contain;
-        border-radius: 8px;
-        box-shadow: 0 0 60px rgba(0, 0, 0, 0.5);
-    }
-
-    #lightbox-close {
-        position: absolute;
-        top: 1.5rem;
-        right: 1.5rem;
-        width: 40px;
-        height: 40px;
-        border: none;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.15);
-        color: #fff;
-        font-size: 1.2rem;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background 0.2s;
-        z-index: 10000;
-    }
-
-    #lightbox-close:hover {
-        background: rgba(255, 255, 255, 0.3);
-    }
-
-    #contact {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-        animation: fadeInUp 0.8s ease-out 0.45s both;
-    }
-
-    .button {
-        padding: 0.8rem 2rem;
-        border-radius: 12px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.3s;
-    }
-
-    .button.primary {
-        background: var(--text-main);
-        color: var(--bg-color);
-    }
-
-    .button.primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
-    }
-
-    .button.secondary {
-        border: 1px solid #333;
-        color: var(--text-main);
-    }
-
-    .button.secondary:hover {
-        background: rgba(255,255,255,0.05);
-        border-color: #555;
-    }
-
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @media (max-width: 768px) {
-        nav { padding: 1.5rem 5%; }
-        h1 { font-size: 2.5rem; }
-        #details { grid-template-columns: 1fr; }
-        .awards-grid { grid-template-columns: 1fr; }
-        .cert-grid { grid-template-columns: 1fr; }
-        #contact { flex-direction: column; width: 100%; }
-        .button { width: 100%; text-align: center; }
-    }
-</style>
+        document.querySelectorAll('.award-item.has-cert').forEach(item => {
+            item.addEventListener('click', function () {
+                const index = parseInt(this.getAttribute('data-cert-index'));
+                if (!isNaN(index) && index >= 0) {
+                    viewer.view(index);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
