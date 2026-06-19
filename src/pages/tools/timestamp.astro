@@ -1,21 +1,10 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
 ---
 
 <Layout title="时间戳转换 - OneSail Tech" description="Unix 时间戳与日期互相转换">
-<div id="container">
-    <div class="spotlight"></div>
-
-    <nav>
-        <a href="/" class="logo"><img src="/favicon.webp" alt="Logo" class="logo-img" /></a>
-        <div class="nav-links">
-            <a href="/">首页</a>
-            <a href="/posts">文章</a>
-            <a href="/projects">项目</a>
-            <a href="/tools" class="active">工具</a>
-            <a href="/about">关于</a>
-        </div>
-    </nav>
+    <Nav active="工具" />
 
     <main>
         <div class="back-link-wrapper">
@@ -23,7 +12,7 @@ import Layout from '../../layouts/Layout.astro';
         </div>
 
         <section id="tool-hero">
-            <h1>时间戳<span class="gradient-text">转换</span></h1>
+            <h1>时间戳转换</h1>
             <p class="subtitle">Unix 时间戳与日期时间互相转换</p>
         </section>
 
@@ -52,12 +41,8 @@ import Layout from '../../layouts/Layout.astro';
                 <div class="result-display" id="timestamp-result"></div>
             </div>
         </div>
-
-        <footer class="page-footer">
-            <a href="/tools" class="button primary">返回工具列表</a>
-        </footer>
     </main>
-</div>
+</Layout>
 
 <script is:inline>
 function updateCurrentTime() {
@@ -154,86 +139,12 @@ function copyValue(el, text) {
 </script>
 
 <style>
-    :root {
-        --accent: #7c3aed;
-        --accent-gradient: linear-gradient(45deg, #7c3aed, #ff1fb1);
-        --bg-color: #0a0a0a;
-        --text-main: #ffffff;
-        --text-muted: #a1a1aa;
-    }
-
-    * {
-        box-sizing: border-box;
-    }
-
-    body {
-        color: var(--text-main);
-        font-family: sans-serif;
-        overflow-x: hidden;
-    }
-
-    #container {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        z-index: 1;
-    }
-
-    .spotlight {
-        position: fixed;
-        top: -30%;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 150vw;
-        height: 150vh;
-        background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.12) 0%, rgba(124, 58, 237, 0.03) 50%, rgba(0, 0, 0, 0) 80%);
-        z-index: -1;
-        pointer-events: none;
-    }
-
-    nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 2rem 10%;
-        animation: fadeInUp 0.8s ease-out;
-    }
-
-    .logo {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-    }
-
-    .logo-img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
-    }
-
-    .nav-links a {
-        color: var(--text-muted);
-        text-decoration: none;
-        margin-left: 2rem;
-        font-size: 0.9rem;
-        font-weight: 500;
-        transition: color 0.3s;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-        color: var(--text-main);
-    }
-
     main {
-        flex: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 2rem 1rem 4rem;
-        max-width: 800px;
+        padding: 2rem 8vw 4rem;
+        max-width: 900px;
         margin: 0 auto;
         width: 100%;
     }
@@ -245,7 +156,7 @@ function copyValue(el, text) {
     }
 
     .back-link {
-        color: var(--accent);
+        color: #2563eb;
         text-decoration: none;
         font-size: 0.9rem;
         font-weight: 600;
@@ -254,7 +165,7 @@ function copyValue(el, text) {
     }
 
     .back-link:hover {
-        color: #a78bfa;
+        color: #1d4ed8;
     }
 
     #tool-hero {
@@ -265,20 +176,15 @@ function copyValue(el, text) {
 
     #tool-hero h1 {
         font-size: clamp(2rem, 5vw, 3rem);
-        font-weight: 800;
-        margin-bottom: 1rem;
-    }
-
-    .gradient-text {
-        background: var(--accent-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        font-weight: 900;
+        letter-spacing: -1px;
+        margin-bottom: 0.8rem;
+        color: #000;
     }
 
     .subtitle {
         font-size: 1.1rem;
-        color: var(--text-muted);
+        color: #666;
     }
 
     .tool-container {
@@ -287,9 +193,9 @@ function copyValue(el, text) {
     }
 
     .current-time-card {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 20px;
+        background: #fff;
+        border: 1px solid #eee;
+        border-radius: 16px;
         padding: 2rem;
         text-align: center;
         margin-bottom: 2rem;
@@ -297,7 +203,7 @@ function copyValue(el, text) {
 
     .current-time-card .label {
         font-size: 0.85rem;
-        color: var(--text-muted);
+        color: #666;
         display: block;
         margin-bottom: 0.8rem;
     }
@@ -307,11 +213,12 @@ function copyValue(el, text) {
         font-weight: 700;
         margin-bottom: 0.5rem;
         font-family: 'JetBrains Mono', 'Fira Code', monospace;
+        color: #000;
     }
 
     .timestamp-display {
         font-size: 1.1rem;
-        color: var(--accent);
+        color: #2563eb;
         font-family: 'JetBrains Mono', 'Fira Code', monospace;
     }
 
@@ -325,19 +232,19 @@ function copyValue(el, text) {
 
     .time-display.copyable:hover,
     .timestamp-display.copyable:hover {
-        background: rgba(124, 58, 237, 0.15);
+        background: #f0f4ff;
     }
 
     .time-display.copyable.copied,
     .timestamp-display.copyable.copied {
-        background: rgba(34, 197, 94, 0.15);
-        color: #22c55e;
+        background: #dcfce7;
+        color: #16a34a;
     }
 
     .converter-section {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 20px;
+        background: #fff;
+        border: 1px solid #eee;
+        border-radius: 16px;
         padding: 2rem;
         margin-bottom: 1.5rem;
     }
@@ -345,7 +252,7 @@ function copyValue(el, text) {
     .converter-section h3 {
         font-size: 1.1rem;
         margin-bottom: 1.2rem;
-        color: var(--text-muted);
+        color: #666;
     }
 
     .input-row {
@@ -355,23 +262,23 @@ function copyValue(el, text) {
 
     .input-row input {
         flex: 1;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
         border-radius: 10px;
         padding: 0.8rem 1rem;
-        color: var(--text-main);
+        color: #000;
         font-size: 0.95rem;
         font-family: 'JetBrains Mono', 'Fira Code', monospace;
     }
 
     .input-row input:focus {
         outline: none;
-        border-color: var(--accent);
+        border-color: #2563eb;
     }
 
     .convert-btn {
         padding: 0.8rem 1.5rem;
-        background: var(--accent);
+        background: #2563eb;
         border: none;
         border-radius: 10px;
         color: #fff;
@@ -383,14 +290,14 @@ function copyValue(el, text) {
     }
 
     .convert-btn:hover {
-        background: #6d28d9;
+        background: #1d4ed8;
         transform: translateY(-2px);
     }
 
     .result-display {
         margin-top: 1.2rem;
         padding: 1rem;
-        background: rgba(124, 58, 237, 0.08);
+        background: #f9fafb;
         border-radius: 10px;
         min-height: 3rem;
     }
@@ -404,7 +311,7 @@ function copyValue(el, text) {
     }
 
     .result-label {
-        color: var(--text-muted);
+        color: #666;
     }
 
     .result-value {
@@ -423,37 +330,13 @@ function copyValue(el, text) {
     }
 
     .result-value.copyable:hover {
-        background: rgba(124, 58, 237, 0.15);
-        color: var(--accent);
+        background: #f0f4ff;
+        color: #2563eb;
     }
 
     .result-value.copyable.copied {
-        background: rgba(34, 197, 94, 0.15);
-        color: #22c55e;
-    }
-
-    .page-footer {
-        margin-top: 4rem;
-        text-align: center;
-        animation: fadeInUp 0.8s ease-out 0.4s both;
-    }
-
-    .button {
-        padding: 0.8rem 2rem;
-        border-radius: 12px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.3s;
-    }
-
-    .button.primary {
-        background: var(--text-main);
-        color: var(--bg-color);
-    }
-
-    .button.primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+        background: #dcfce7;
+        color: #16a34a;
     }
 
     @keyframes fadeInUp {
@@ -467,11 +350,10 @@ function copyValue(el, text) {
         }
     }
 
-    @media (max-width: 768px) {
-        nav { padding: 1.5rem 5%; }
+    @media (max-width: 900px) {
+        main { padding: 1.5rem 5vw 3rem; }
         #tool-hero h1 { font-size: 2rem; }
         .input-row { flex-direction: column; }
         .time-display { font-size: 1.5rem; }
     }
 </style>
-</Layout>

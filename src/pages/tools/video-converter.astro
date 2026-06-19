@@ -1,21 +1,10 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
 ---
 
 <Layout title="视频格式转换 - OneSail Tech" description="在线视频格式转换工具，支持多种视频格式">
-<div id="container">
-    <div class="spotlight"></div>
-
-    <nav>
-        <a href="/" class="logo"><img src="/favicon.webp" alt="Logo" class="logo-img" /></a>
-        <div class="nav-links">
-            <a href="/">首页</a>
-            <a href="/posts">文章</a>
-            <a href="/projects">项目</a>
-            <a href="/tools" class="active">工具</a>
-            <a href="/about">关于</a>
-        </div>
-    </nav>
+    <Nav active="工具" />
 
     <main>
         <div class="back-link-wrapper">
@@ -23,7 +12,7 @@ import Layout from '../../layouts/Layout.astro';
         </div>
 
         <section id="tool-hero">
-            <h1>视频<span class="gradient-text">格式转换</span></h1>
+            <h1>视频格式转换</h1>
             <p class="subtitle">上传单个或多个视频，浏览器端离线转换为其他格式</p>
         </section>
 
@@ -66,12 +55,8 @@ import Layout from '../../layouts/Layout.astro';
                 <div class="status-text" id="status-text"></div>
             </div>
         </div>
-
-        <footer class="page-footer">
-            <a href="/tools" class="button primary">返回工具列表</a>
-        </footer>
     </main>
-</div>
+</Layout>
 
 <script is:inline>
 let uploadedFiles = [];
@@ -256,86 +241,12 @@ function downloadBlob(blob, filename) {
 </script>
 
 <style>
-    :root {
-        --accent: #7c3aed;
-        --accent-gradient: linear-gradient(45deg, #7c3aed, #ff1fb1);
-        --bg-color: #0a0a0a;
-        --text-main: #ffffff;
-        --text-muted: #a1a1aa;
-    }
-
-    * {
-        box-sizing: border-box;
-    }
-
-    body {
-        color: var(--text-main);
-        font-family: sans-serif;
-        overflow-x: hidden;
-    }
-
-    #container {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        z-index: 1;
-    }
-
-    .spotlight {
-        position: fixed;
-        top: -30%;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 150vw;
-        height: 150vh;
-        background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.12) 0%, rgba(124, 58, 237, 0.03) 50%, rgba(0, 0, 0, 0) 80%);
-        z-index: -1;
-        pointer-events: none;
-    }
-
-    nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 2rem 10%;
-        animation: fadeInUp 0.8s ease-out;
-    }
-
-    .logo {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-    }
-
-    .logo-img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
-    }
-
-    .nav-links a {
-        color: var(--text-muted);
-        text-decoration: none;
-        margin-left: 2rem;
-        font-size: 0.9rem;
-        font-weight: 500;
-        transition: color 0.3s;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-        color: var(--text-main);
-    }
-
     main {
-        flex: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 2rem 1rem 4rem;
-        max-width: 800px;
+        padding: 2rem 8vw 4rem;
+        max-width: 900px;
         margin: 0 auto;
         width: 100%;
     }
@@ -347,7 +258,7 @@ function downloadBlob(blob, filename) {
     }
 
     .back-link {
-        color: var(--accent);
+        color: #2563eb;
         text-decoration: none;
         font-size: 0.9rem;
         font-weight: 600;
@@ -356,7 +267,7 @@ function downloadBlob(blob, filename) {
     }
 
     .back-link:hover {
-        color: #a78bfa;
+        color: #1d4ed8;
     }
 
     #tool-hero {
@@ -367,20 +278,15 @@ function downloadBlob(blob, filename) {
 
     #tool-hero h1 {
         font-size: clamp(2rem, 5vw, 3rem);
-        font-weight: 800;
-        margin-bottom: 1rem;
-    }
-
-    .gradient-text {
-        background: var(--accent-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        font-weight: 900;
+        letter-spacing: -1px;
+        margin-bottom: 0.8rem;
+        color: #000;
     }
 
     .subtitle {
         font-size: 1.1rem;
-        color: var(--text-muted);
+        color: #666;
     }
 
     .tool-container {
@@ -389,9 +295,9 @@ function downloadBlob(blob, filename) {
     }
 
     .upload-area {
-        background: rgba(255, 255, 255, 0.03);
-        border: 2px dashed rgba(255, 255, 255, 0.15);
-        border-radius: 20px;
+        background: #f9fafb;
+        border: 2px dashed #d1d5db;
+        border-radius: 16px;
         padding: 3rem 2rem;
         text-align: center;
         cursor: pointer;
@@ -400,23 +306,24 @@ function downloadBlob(blob, filename) {
 
     .upload-area:hover,
     .upload-area.drag-over {
-        border-color: var(--accent);
-        background: rgba(124, 58, 237, 0.05);
+        border-color: #2563eb;
+        background: #f0f4ff;
     }
 
     .upload-area svg {
-        color: var(--text-muted);
+        color: #999;
         margin-bottom: 1rem;
     }
 
     .upload-area p {
         font-size: 1.1rem;
         margin-bottom: 0.5rem;
+        color: #333;
     }
 
     .upload-hint {
         font-size: 0.85rem;
-        color: var(--text-muted);
+        color: #999;
     }
 
     .convert-options {
@@ -434,8 +341,8 @@ function downloadBlob(blob, filename) {
         display: flex;
         align-items: center;
         gap: 1rem;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: #fff;
+        border: 1px solid #eee;
         border-radius: 12px;
         padding: 1rem 1.2rem;
     }
@@ -446,17 +353,18 @@ function downloadBlob(blob, filename) {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        color: #333;
     }
 
     .file-size {
         font-size: 0.85rem;
-        color: var(--text-muted);
+        color: #999;
     }
 
     .remove-btn {
         background: none;
         border: none;
-        color: var(--text-muted);
+        color: #999;
         cursor: pointer;
         font-size: 1rem;
         padding: 0.2rem;
@@ -464,7 +372,7 @@ function downloadBlob(blob, filename) {
     }
 
     .remove-btn:hover {
-        color: #ff4d4d;
+        color: #ef4444;
     }
 
     .format-selector {
@@ -476,26 +384,26 @@ function downloadBlob(blob, filename) {
 
     .format-selector label {
         font-size: 0.95rem;
-        color: var(--text-muted);
+        color: #666;
     }
 
     .format-selector select {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
         border-radius: 8px;
         padding: 0.6rem 1rem;
-        color: var(--text-main);
+        color: #000;
         font-size: 0.95rem;
         cursor: pointer;
     }
 
     .format-selector select:focus {
         outline: none;
-        border-color: var(--accent);
+        border-color: #2563eb;
     }
 
     .progress-container {
-        background: rgba(255, 255, 255, 0.05);
+        background: #f3f4f6;
         border-radius: 8px;
         height: 24px;
         position: relative;
@@ -505,7 +413,7 @@ function downloadBlob(blob, filename) {
 
     .progress-bar {
         height: 100%;
-        background: var(--accent-gradient);
+        background: #2563eb;
         width: 0%;
         transition: width 0.3s;
         border-radius: 8px;
@@ -518,11 +426,12 @@ function downloadBlob(blob, filename) {
         transform: translate(-50%, -50%);
         font-size: 0.8rem;
         font-weight: 600;
+        color: #333;
     }
 
     .status-text {
         font-size: 0.85rem;
-        color: var(--text-muted);
+        color: #666;
         margin-bottom: 1rem;
         word-break: break-all;
     }
@@ -530,7 +439,7 @@ function downloadBlob(blob, filename) {
     .convert-btn {
         width: 100%;
         padding: 1rem;
-        background: var(--accent);
+        background: #2563eb;
         border: none;
         border-radius: 12px;
         color: #fff;
@@ -542,38 +451,14 @@ function downloadBlob(blob, filename) {
     }
 
     .convert-btn:hover:not(:disabled) {
-        background: #6d28d9;
+        background: #1d4ed8;
         transform: translateY(-2px);
-        box-shadow: 0 8px 24px rgba(124, 58, 237, 0.4);
+        box-shadow: 0 8px 24px rgba(37, 99, 235, 0.25);
     }
 
     .convert-btn:disabled {
         opacity: 0.6;
         cursor: not-allowed;
-    }
-
-    .page-footer {
-        margin-top: 4rem;
-        text-align: center;
-        animation: fadeInUp 0.8s ease-out 0.4s both;
-    }
-
-    .button {
-        padding: 0.8rem 2rem;
-        border-radius: 12px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.3s;
-    }
-
-    .button.primary {
-        background: var(--text-main);
-        color: var(--bg-color);
-    }
-
-    .button.primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
     }
 
     @keyframes fadeInUp {
@@ -587,10 +472,9 @@ function downloadBlob(blob, filename) {
         }
     }
 
-    @media (max-width: 768px) {
-        nav { padding: 1.5rem 5%; }
+    @media (max-width: 900px) {
+        main { padding: 1.5rem 5vw 3rem; }
         #tool-hero h1 { font-size: 2rem; }
         .upload-area { padding: 2rem 1.5rem; }
     }
 </style>
-</Layout>

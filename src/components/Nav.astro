@@ -1,0 +1,78 @@
+---
+interface Props {
+    active?: string;
+}
+
+const { active = '' } = Astro.props;
+
+const links = [
+    { href: '/', label: '首页' },
+    { href: '/posts', label: '文章' },
+    { href: '/projects', label: '项目' },
+    { href: '/tools', label: '工具' },
+    { href: '/about', label: '关于' },
+];
+---
+
+<nav>
+    <a href="/" class="logo"><img src="/favicon.webp" alt="Logo" class="logo-img" /></a>
+    <div class="nav-links">
+        {links.map(link => (
+            <a href={link.href} class:list={[{ active: active === link.label }]}>{link.label}</a>
+        ))}
+    </div>
+</nav>
+
+<style>
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 8vw;
+        position: relative;
+        z-index: 10;
+    }
+
+    .logo {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+    }
+
+    .logo-img {
+        height: 32px;
+        width: 32px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 1.8rem;
+    }
+
+    .nav-links a {
+        color: #666;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.3s;
+        font-weight: 500;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+        color: #2563eb;
+    }
+
+    @media (max-width: 900px) {
+        nav {
+            padding: 1rem 5vw;
+        }
+        .nav-links {
+            gap: 1rem;
+        }
+        .nav-links a {
+            font-size: 0.8rem;
+        }
+    }
+</style>

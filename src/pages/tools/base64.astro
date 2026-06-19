@@ -1,21 +1,10 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
 ---
 
 <Layout title="Base64 编解码 - OneSail Tech" description="Base64 编码与解码工具，支持文本和图片">
-<div id="container">
-    <div class="spotlight"></div>
-
-    <nav>
-        <a href="/" class="logo"><img src="/favicon.webp" alt="Logo" class="logo-img" /></a>
-        <div class="nav-links">
-            <a href="/">首页</a>
-            <a href="/posts">文章</a>
-            <a href="/projects">项目</a>
-            <a href="/tools" class="active">工具</a>
-            <a href="/about">关于</a>
-        </div>
-    </nav>
+    <Nav active="工具" />
 
     <main>
         <div class="back-link-wrapper">
@@ -23,7 +12,7 @@ import Layout from '../../layouts/Layout.astro';
         </div>
 
         <section id="tool-hero">
-            <h1>Base64<span class="gradient-text">编解码</span></h1>
+            <h1>Base64 编解码</h1>
             <p class="subtitle">支持文本和图片的 Base64 编码与解码</p>
         </section>
 
@@ -97,12 +86,8 @@ import Layout from '../../layouts/Layout.astro';
                 </div>
             </div>
         </div>
-
-        <footer class="page-footer">
-            <a href="/tools" class="button primary">返回工具列表</a>
-        </footer>
     </main>
-</div>
+</Layout>
 
 <script is:inline>
 let currentMode = 'text';
@@ -233,86 +218,12 @@ function clearImage() {
 </script>
 
 <style>
-    :root {
-        --accent: #7c3aed;
-        --accent-gradient: linear-gradient(45deg, #7c3aed, #ff1fb1);
-        --bg-color: #0a0a0a;
-        --text-main: #ffffff;
-        --text-muted: #a1a1aa;
-    }
-
-    * {
-        box-sizing: border-box;
-    }
-
-    body {
-        color: var(--text-main);
-        font-family: sans-serif;
-        overflow-x: hidden;
-    }
-
-    #container {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        z-index: 1;
-    }
-
-    .spotlight {
-        position: fixed;
-        top: -30%;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 150vw;
-        height: 150vh;
-        background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.12) 0%, rgba(124, 58, 237, 0.03) 50%, rgba(0, 0, 0, 0) 80%);
-        z-index: -1;
-        pointer-events: none;
-    }
-
-    nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 2rem 10%;
-        animation: fadeInUp 0.8s ease-out;
-    }
-
-    .logo {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-    }
-
-    .logo-img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
-    }
-
-    .nav-links a {
-        color: var(--text-muted);
-        text-decoration: none;
-        margin-left: 2rem;
-        font-size: 0.9rem;
-        font-weight: 500;
-        transition: color 0.3s;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-        color: var(--text-main);
-    }
-
     main {
-        flex: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 2rem 1rem 4rem;
-        max-width: 800px;
+        padding: 2rem 8vw 4rem;
+        max-width: 900px;
         margin: 0 auto;
         width: 100%;
     }
@@ -324,7 +235,7 @@ function clearImage() {
     }
 
     .back-link {
-        color: var(--accent);
+        color: #2563eb;
         text-decoration: none;
         font-size: 0.9rem;
         font-weight: 600;
@@ -333,7 +244,7 @@ function clearImage() {
     }
 
     .back-link:hover {
-        color: #a78bfa;
+        color: #1d4ed8;
     }
 
     #tool-hero {
@@ -344,20 +255,15 @@ function clearImage() {
 
     #tool-hero h1 {
         font-size: clamp(2rem, 5vw, 3rem);
-        font-weight: 800;
-        margin-bottom: 1rem;
-    }
-
-    .gradient-text {
-        background: var(--accent-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        font-weight: 900;
+        letter-spacing: -1px;
+        margin-bottom: 0.8rem;
+        color: #000;
     }
 
     .subtitle {
         font-size: 1.1rem;
-        color: var(--text-muted);
+        color: #666;
     }
 
     .tool-container {
@@ -374,10 +280,10 @@ function clearImage() {
     .mode-tab {
         flex: 1;
         padding: 0.7rem;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
         border-radius: 10px;
-        color: var(--text-muted);
+        color: #666;
         font-size: 0.95rem;
         font-weight: 600;
         cursor: pointer;
@@ -385,8 +291,8 @@ function clearImage() {
     }
 
     .mode-tab.active {
-        background: var(--accent);
-        border-color: var(--accent);
+        background: #2563eb;
+        border-color: #2563eb;
         color: #fff;
     }
 
@@ -397,17 +303,17 @@ function clearImage() {
     .input-group label {
         display: block;
         font-size: 0.95rem;
-        color: var(--text-muted);
+        color: #666;
         margin-bottom: 0.6rem;
     }
 
     .input-group textarea {
         width: 100%;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
         border-radius: 12px;
         padding: 1rem;
-        color: var(--text-main);
+        color: #000;
         font-size: 0.95rem;
         font-family: 'JetBrains Mono', 'Fira Code', monospace;
         resize: vertical;
@@ -416,7 +322,7 @@ function clearImage() {
 
     .input-group textarea:focus {
         outline: none;
-        border-color: var(--accent);
+        border-color: #2563eb;
     }
 
     .action-buttons {
@@ -430,7 +336,7 @@ function clearImage() {
         flex: 1;
         min-width: 100px;
         padding: 0.8rem 1.2rem;
-        background: var(--accent);
+        background: #2563eb;
         border: none;
         border-radius: 10px;
         color: #fff;
@@ -441,23 +347,24 @@ function clearImage() {
     }
 
     .action-btn:hover {
-        background: #6d28d9;
+        background: #1d4ed8;
         transform: translateY(-2px);
     }
 
     .action-btn.secondary {
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        color: #333;
     }
 
     .action-btn.secondary:hover {
-        background: rgba(255, 255, 255, 0.12);
+        background: #f3f4f6;
     }
 
     .upload-area {
-        background: rgba(255, 255, 255, 0.03);
-        border: 2px dashed rgba(255, 255, 255, 0.15);
-        border-radius: 20px;
+        background: #f9fafb;
+        border: 2px dashed #d1d5db;
+        border-radius: 16px;
         padding: 3rem 2rem;
         text-align: center;
         cursor: pointer;
@@ -467,30 +374,31 @@ function clearImage() {
 
     .upload-area:hover,
     .upload-area.drag-over {
-        border-color: var(--accent);
-        background: rgba(124, 58, 237, 0.05);
+        border-color: #2563eb;
+        background: #f0f4ff;
     }
 
     .upload-area svg {
-        color: var(--text-muted);
+        color: #999;
         margin-bottom: 1rem;
     }
 
     .upload-area p {
         font-size: 1.1rem;
         margin-bottom: 0.5rem;
+        color: #333;
     }
 
     .upload-hint {
         font-size: 0.85rem;
-        color: var(--text-muted);
+        color: #999;
     }
 
     .image-preview-wrapper {
         margin-bottom: 1.5rem;
         border-radius: 12px;
         overflow: hidden;
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        border: 1px solid #eee;
     }
 
     .image-preview-wrapper img {
@@ -501,29 +409,29 @@ function clearImage() {
     .decode-section {
         margin-top: 2rem;
         padding-top: 2rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        border-top: 1px solid #eee;
     }
 
     .section-title {
         font-size: 1.1rem;
         margin-bottom: 1.2rem;
-        color: var(--text-muted);
+        color: #666;
     }
 
     .decode-section label {
         display: block;
         font-size: 0.95rem;
-        color: var(--text-muted);
+        color: #666;
         margin-bottom: 0.6rem;
     }
 
     .decode-section textarea {
         width: 100%;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
         border-radius: 12px;
         padding: 1rem;
-        color: var(--text-main);
+        color: #000;
         font-size: 0.95rem;
         font-family: 'JetBrains Mono', 'Fira Code', monospace;
         resize: vertical;
@@ -532,7 +440,7 @@ function clearImage() {
 
     .decode-section textarea:focus {
         outline: none;
-        border-color: var(--accent);
+        border-color: #2563eb;
     }
 
     .decode-btn {
@@ -554,7 +462,7 @@ function clearImage() {
     .download-btn {
         display: inline-block;
         padding: 0.8rem 2rem;
-        background: var(--accent);
+        background: #2563eb;
         border-radius: 10px;
         color: #fff;
         font-weight: 600;
@@ -563,32 +471,8 @@ function clearImage() {
     }
 
     .download-btn:hover {
-        background: #6d28d9;
+        background: #1d4ed8;
         transform: translateY(-2px);
-    }
-
-    .page-footer {
-        margin-top: 4rem;
-        text-align: center;
-        animation: fadeInUp 0.8s ease-out 0.4s both;
-    }
-
-    .button {
-        padding: 0.8rem 2rem;
-        border-radius: 12px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.3s;
-    }
-
-    .button.primary {
-        background: var(--text-main);
-        color: var(--bg-color);
-    }
-
-    .button.primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
     }
 
     @keyframes fadeInUp {
@@ -602,11 +486,10 @@ function clearImage() {
         }
     }
 
-    @media (max-width: 768px) {
-        nav { padding: 1.5rem 5%; }
+    @media (max-width: 900px) {
+        main { padding: 1.5rem 5vw 3rem; }
         #tool-hero h1 { font-size: 2rem; }
         .action-buttons { flex-direction: column; }
         .action-btn { min-width: auto; }
     }
 </style>
-</Layout>

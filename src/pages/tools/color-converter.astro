@@ -1,21 +1,10 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
 ---
 
 <Layout title="颜色转换 - OneSail Tech" description="HEX、RGB、HSL 颜色格式互相转换">
-<div id="container">
-    <div class="spotlight"></div>
-
-    <nav>
-        <a href="/" class="logo"><img src="/favicon.webp" alt="Logo" class="logo-img" /></a>
-        <div class="nav-links">
-            <a href="/">首页</a>
-            <a href="/posts">文章</a>
-            <a href="/projects">项目</a>
-            <a href="/tools" class="active">工具</a>
-            <a href="/about">关于</a>
-        </div>
-    </nav>
+    <Nav active="工具" />
 
     <main>
         <div class="back-link-wrapper">
@@ -23,7 +12,7 @@ import Layout from '../../layouts/Layout.astro';
         </div>
 
         <section id="tool-hero">
-            <h1>颜色<span class="gradient-text">转换</span></h1>
+            <h1>颜色转换</h1>
             <p class="subtitle">HEX、RGB、HSL 颜色格式互相转换</p>
         </section>
 
@@ -32,17 +21,17 @@ import Layout from '../../layouts/Layout.astro';
 
             <div class="input-group">
                 <label for="hex-input">HEX：</label>
-                <input type="text" id="hex-input" placeholder="#7c3aed" oninput="convertFromHex()" />
+                <input type="text" id="hex-input" placeholder="#2563eb" oninput="convertFromHex()" />
             </div>
 
             <div class="input-group">
                 <label for="rgb-input">RGB：</label>
-                <input type="text" id="rgb-input" placeholder="124, 58, 237" oninput="convertFromRGB()" />
+                <input type="text" id="rgb-input" placeholder="37, 99, 235" oninput="convertFromRGB()" />
             </div>
 
             <div class="input-group">
                 <label for="hsl-input">HSL：</label>
-                <input type="text" id="hsl-input" placeholder="262, 83%, 58%" oninput="convertFromHSL()" />
+                <input type="text" id="hsl-input" placeholder="217, 91%, 53%" oninput="convertFromHSL()" />
             </div>
 
             <div class="copy-buttons">
@@ -51,12 +40,8 @@ import Layout from '../../layouts/Layout.astro';
                 <button class="copy-btn" onclick="copyValue('hsl')">复制 HSL</button>
             </div>
         </div>
-
-        <footer class="page-footer">
-            <a href="/tools" class="button primary">返回工具列表</a>
-        </footer>
     </main>
-</div>
+</Layout>
 
 <script is:inline>
 function hexToRgb(hex) {
@@ -163,91 +148,17 @@ function copyValue(type) {
     }
 }
 
-document.getElementById('hex-input').value = '#7c3aed';
+document.getElementById('hex-input').value = '#2563eb';
 convertFromHex();
 </script>
 
 <style>
-    :root {
-        --accent: #7c3aed;
-        --accent-gradient: linear-gradient(45deg, #7c3aed, #ff1fb1);
-        --bg-color: #0a0a0a;
-        --text-main: #ffffff;
-        --text-muted: #a1a1aa;
-    }
-
-    * {
-        box-sizing: border-box;
-    }
-
-    body {
-        color: var(--text-main);
-        font-family: sans-serif;
-        overflow-x: hidden;
-    }
-
-    #container {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        z-index: 1;
-    }
-
-    .spotlight {
-        position: fixed;
-        top: -30%;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 150vw;
-        height: 150vh;
-        background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.12) 0%, rgba(124, 58, 237, 0.03) 50%, rgba(0, 0, 0, 0) 80%);
-        z-index: -1;
-        pointer-events: none;
-    }
-
-    nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 2rem 10%;
-        animation: fadeInUp 0.8s ease-out;
-    }
-
-    .logo {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-    }
-
-    .logo-img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
-    }
-
-    .nav-links a {
-        color: var(--text-muted);
-        text-decoration: none;
-        margin-left: 2rem;
-        font-size: 0.9rem;
-        font-weight: 500;
-        transition: color 0.3s;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-        color: var(--text-main);
-    }
-
     main {
-        flex: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 2rem 1rem 4rem;
-        max-width: 800px;
+        padding: 2rem 8vw 4rem;
+        max-width: 900px;
         margin: 0 auto;
         width: 100%;
     }
@@ -259,7 +170,7 @@ convertFromHex();
     }
 
     .back-link {
-        color: var(--accent);
+        color: #2563eb;
         text-decoration: none;
         font-size: 0.9rem;
         font-weight: 600;
@@ -268,7 +179,7 @@ convertFromHex();
     }
 
     .back-link:hover {
-        color: #a78bfa;
+        color: #1d4ed8;
     }
 
     #tool-hero {
@@ -279,20 +190,15 @@ convertFromHex();
 
     #tool-hero h1 {
         font-size: clamp(2rem, 5vw, 3rem);
-        font-weight: 800;
-        margin-bottom: 1rem;
-    }
-
-    .gradient-text {
-        background: var(--accent-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        font-weight: 900;
+        letter-spacing: -1px;
+        margin-bottom: 0.8rem;
+        color: #000;
     }
 
     .subtitle {
         font-size: 1.1rem;
-        color: var(--text-muted);
+        color: #666;
     }
 
     .tool-container {
@@ -303,9 +209,9 @@ convertFromHex();
     .color-preview {
         width: 100%;
         height: 120px;
-        border-radius: 20px;
+        border-radius: 16px;
         margin-bottom: 2rem;
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        border: 1px solid #eee;
         transition: background-color 0.3s;
     }
 
@@ -316,24 +222,24 @@ convertFromHex();
     .input-group label {
         display: block;
         font-size: 0.95rem;
-        color: var(--text-muted);
+        color: #666;
         margin-bottom: 0.5rem;
     }
 
     .input-group input {
         width: 100%;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
         border-radius: 10px;
         padding: 0.8rem 1rem;
-        color: var(--text-main);
+        color: #000;
         font-size: 0.95rem;
         font-family: 'JetBrains Mono', 'Fira Code', monospace;
     }
 
     .input-group input:focus {
         outline: none;
-        border-color: var(--accent);
+        border-color: #2563eb;
     }
 
     .copy-buttons {
@@ -345,10 +251,10 @@ convertFromHex();
     .copy-btn {
         flex: 1;
         padding: 0.8rem;
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
         border-radius: 10px;
-        color: var(--text-main);
+        color: #333;
         font-size: 0.9rem;
         font-weight: 600;
         cursor: pointer;
@@ -356,32 +262,9 @@ convertFromHex();
     }
 
     .copy-btn:hover {
-        background: var(--accent);
-        border-color: var(--accent);
-    }
-
-    .page-footer {
-        margin-top: 4rem;
-        text-align: center;
-        animation: fadeInUp 0.8s ease-out 0.4s both;
-    }
-
-    .button {
-        padding: 0.8rem 2rem;
-        border-radius: 12px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.3s;
-    }
-
-    .button.primary {
-        background: var(--text-main);
-        color: var(--bg-color);
-    }
-
-    .button.primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+        background: #2563eb;
+        border-color: #2563eb;
+        color: #fff;
     }
 
     @keyframes fadeInUp {
@@ -395,10 +278,9 @@ convertFromHex();
         }
     }
 
-    @media (max-width: 768px) {
-        nav { padding: 1.5rem 5%; }
+    @media (max-width: 900px) {
+        main { padding: 1.5rem 5vw 3rem; }
         #tool-hero h1 { font-size: 2rem; }
         .copy-buttons { flex-direction: column; }
     }
 </style>
-</Layout>

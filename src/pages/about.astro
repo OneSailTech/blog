@@ -1,4 +1,7 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+
 const name = "谢怡帆";
 const email = "onesailtech@gmail.com";
 const avatar = "/favicon.webp";
@@ -35,7 +38,6 @@ const awards = [
 const education = [
     { school: "江西职业技术大学", major: "移动互联应用技术（大专）", period: "2023 - 2026" },
     { school: "江西省电子信息工程学校", major: "计算机网络技术（中专）", period: "2020 - 2023" },
-    // { school: "江西工程学院", major: "计算机科学与技术（本科）", period: "2026 - 2028" },
 ];
 
 const allCerts = [
@@ -53,375 +55,10 @@ const allCerts = [
 ];
 ---
 
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>关于 - OneSail Tech</title>
-    <meta name="description" content="关于 OneSail Tech — 个人介绍、荣誉与证书">
-    <link rel="icon" type="image/webp" href="/favicon.webp" />
+<Layout title="关于 - OneSail Tech" description="关于 OneSail Tech — 个人介绍、荣誉与证书">
     <link rel="stylesheet" href="/viewer.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            outline: none;
-        }
 
-        html {
-            overflow-x: hidden;
-            scrollbar-gutter: stable;
-        }
-
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #999; }
-        * { scrollbar-width: thin; scrollbar-color: #ccc transparent; }
-
-        body {
-            background-color: #ffffff;
-            color: #000000;
-            font-family: sans-serif;
-        }
-
-        /* ===== Nav ===== */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 8vw;
-            position: relative;
-            z-index: 10;
-        }
-
-        .logo {
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-
-        .logo-img {
-            height: 32px;
-            width: 32px;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.8rem;
-        }
-
-        .nav-links a {
-            color: #666;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-            font-weight: 500;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: #2563eb;
-        }
-
-        /* ===== Layout ===== */
-        .layout {
-            display: flex;
-            width: 100%;
-            min-height: calc(100vh - 80px);
-        }
-
-        .left-panel {
-            flex: 0 0 60%;
-            padding: 6vh 3vw 6vh 8vw;
-            display: flex;
-            flex-direction: column;
-            gap: 4vh;
-        }
-
-        .header .name {
-            font-size: clamp(3rem, 5vw, 5rem);
-            font-weight: 900;
-            letter-spacing: -2px;
-            margin-bottom: 0.5vh;
-        }
-
-        .header .email {
-            font-size: 1.1rem;
-            color: #666;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .header .email:hover {
-            color: #2563eb;
-        }
-
-        .header .email-wrapper {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .header .copy-icon {
-            display: inline-flex;
-            align-items: center;
-            cursor: pointer;
-            color: #999;
-            transition: color 0.2s;
-            line-height: 1;
-        }
-
-        .header .copy-icon:hover {
-            color: #2563eb;
-        }
-
-        .header .copy-icon.copied {
-            color: #16a34a;
-        }
-
-        .section-title {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #999;
-            margin-bottom: 1.5vh;
-            font-weight: 600;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 0.5vh;
-            border-left: 3px solid #2563eb;
-            padding-left: 10px;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .tech-stack span {
-            font-size: 0.9rem;
-            padding: 6px 16px;
-            border: 1px solid #ddd;
-            border-radius: 50px;
-            color: #333;
-        }
-
-        .awards-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5vh 2vw;
-            list-style: none;
-        }
-
-        .award-item {
-            font-size: 0.95rem;
-            color: #333;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid transparent;
-            padding-bottom: 2px;
-            transition: all 0.2s;
-            line-height: 1.4;
-        }
-
-        .award-item.has-cert {
-            cursor: pointer;
-        }
-
-        .award-item.has-cert:hover {
-            color: #2563eb;
-            border-bottom-color: #2563eb;
-        }
-
-        .award-item.has-cert::after {
-            content: '↗';
-            color: #ccc;
-            font-size: 0.8rem;
-            margin-left: 8px;
-            flex-shrink: 0;
-        }
-
-        .edu-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5vh;
-        }
-
-        .edu-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            border-left: 4px solid #2563eb;
-            padding-left: 12px;
-        }
-
-        .edu-school {
-            font-weight: bold;
-            font-size: 1.05rem;
-        }
-
-        .edu-major {
-            font-size: 0.9rem;
-            color: #666;
-            margin-top: 2px;
-        }
-
-        .edu-time {
-            font-size: 0.9rem;
-            color: #999;
-        }
-
-        .right-panel {
-            flex: 0 0 40%;
-            height: calc(100vh - 80px);
-            position: sticky;
-            top: 80px;
-            display: flex;
-            align-items: flex-end;
-            justify-content: flex-end;
-        }
-
-        .portrait {
-            width: auto;
-            height: 90vh;
-            max-width: 100%;
-            object-fit: contain;
-            object-position: bottom;
-        }
-
-        #gallery {
-            display: none;
-        }
-
-        /* ===== Animations ===== */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .layout {
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        .left-panel > * {
-            opacity: 0;
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-
-        .left-panel > *:nth-child(1) { animation-delay: 0.1s; }
-        .left-panel > *:nth-child(2) { animation-delay: 0.2s; }
-        .left-panel > *:nth-child(3) { animation-delay: 0.3s; }
-        .left-panel > *:nth-child(4) { animation-delay: 0.4s; }
-        .left-panel > *:nth-child(5) { animation-delay: 0.5s; }
-
-        .right-panel {
-            opacity: 0;
-            animation: fadeInUp 0.6s ease-out 0.3s forwards;
-        }
-
-        /* ===== Hover effects ===== */
-        .tech-stack span {
-            transition: transform 0.2s, background 0.2s, color 0.2s, border-color 0.2s;
-            cursor: default;
-        }
-
-        .tech-stack span:hover {
-            transform: translateY(-3px);
-            background: #2563eb;
-            color: #fff;
-            border-color: #2563eb;
-        }
-
-        .award-item.has-cert {
-            transition: transform 0.2s, border-color 0.2s, color 0.2s;
-        }
-
-        .award-item.has-cert:hover {
-            transform: translateX(3px);
-        }
-
-        .edu-item {
-            transition: transform 0.2s;
-        }
-
-        .edu-item:hover {
-            transform: translateX(5px);
-        }
-
-        .portrait {
-            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .portrait:hover {
-            transform: scale(1.02);
-        }
-
-        @media (max-width: 900px) {
-            nav {
-                padding: 1rem 5vw;
-            }
-            .nav-links {
-                gap: 1rem;
-            }
-            .nav-links a {
-                font-size: 0.8rem;
-            }
-            .layout {
-                flex-direction: column-reverse;
-                display: flex;
-            }
-            .left-panel {
-                flex: none;
-                width: 100%;
-                padding: 4vh 6vw 10vh 6vw;
-            }
-            .header {
-                text-align: center;
-            }
-            .right-panel {
-                flex: none;
-                width: 100%;
-                height: 60vh;
-                position: relative;
-                top: 0;
-                justify-content: center;
-            }
-            .portrait {
-                height: 100%;
-            }
-            .awards-grid {
-                grid-template-columns: 1fr;
-            }
-            .edu-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <nav>
-        <a href="/" class="logo"><img src="/favicon.webp" alt="Logo" class="logo-img" /></a>
-        <div class="nav-links">
-            <a href="/">首页</a>
-            <a href="/posts">文章</a>
-            <a href="/projects">项目</a>
-            <a href="/tools">工具</a>
-            <a href="/about" class="active">关于</a>
-        </div>
-    </nav>
+    <Nav active="关于" />
 
     <div class="layout">
         <section class="left-panel">
@@ -481,8 +118,7 @@ const allCerts = [
         {allCerts.map(src => <img src={src} alt="" />)}
     </div>
 
-    <script is:inline src="/viewer.min.js">
-    </script>
+    <script is:inline src="/viewer.min.js"></script>
     <script>
         const galleryElement = document.getElementById('gallery');
 
@@ -527,5 +163,259 @@ const allCerts = [
             });
         });
     </script>
-</body>
-</html>
+</Layout>
+
+<style>
+    .layout {
+        display: flex;
+        width: 100%;
+        min-height: calc(100vh - 80px);
+    }
+
+    .left-panel {
+        flex: 0 0 60%;
+        padding: 6vh 3vw 6vh 8vw;
+        display: flex;
+        flex-direction: column;
+        gap: 4vh;
+    }
+
+    .header .name {
+        font-size: clamp(3rem, 5vw, 5rem);
+        font-weight: 900;
+        letter-spacing: -2px;
+        margin-bottom: 0.5vh;
+    }
+
+    .header .email {
+        font-size: 1.1rem;
+        color: #666;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    .header .email:hover {
+        color: #2563eb;
+    }
+
+    .header .email-wrapper {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .header .copy-icon {
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+        color: #999;
+        transition: color 0.2s;
+        line-height: 1;
+    }
+
+    .header .copy-icon:hover {
+        color: #2563eb;
+    }
+
+    .header .copy-icon.copied {
+        color: #16a34a;
+    }
+
+    .section-title {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #999;
+        margin-bottom: 1.5vh;
+        font-weight: 600;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 0.5vh;
+        border-left: 3px solid #2563eb;
+        padding-left: 10px;
+    }
+
+    .tech-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .tech-stack span {
+        font-size: 0.9rem;
+        padding: 6px 16px;
+        border: 1px solid #ddd;
+        border-radius: 50px;
+        color: #333;
+        transition: transform 0.2s, background 0.2s, color 0.2s, border-color 0.2s;
+        cursor: default;
+    }
+
+    .tech-stack span:hover {
+        transform: translateY(-3px);
+        background: #2563eb;
+        color: #fff;
+        border-color: #2563eb;
+    }
+
+    .awards-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5vh 2vw;
+        list-style: none;
+    }
+
+    .award-item {
+        font-size: 0.95rem;
+        color: #333;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid transparent;
+        padding-bottom: 2px;
+        transition: all 0.2s;
+        line-height: 1.4;
+    }
+
+    .award-item.has-cert {
+        cursor: pointer;
+    }
+
+    .award-item.has-cert:hover {
+        color: #2563eb;
+        border-bottom-color: #2563eb;
+        transform: translateX(3px);
+    }
+
+    .award-item.has-cert::after {
+        content: '↗';
+        color: #ccc;
+        font-size: 0.8rem;
+        margin-left: 8px;
+        flex-shrink: 0;
+    }
+
+    .edu-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5vh;
+    }
+
+    .edu-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        border-left: 4px solid #2563eb;
+        padding-left: 12px;
+        transition: transform 0.2s;
+    }
+
+    .edu-item:hover {
+        transform: translateX(5px);
+    }
+
+    .edu-school {
+        font-weight: bold;
+        font-size: 1.05rem;
+    }
+
+    .edu-major {
+        font-size: 0.9rem;
+        color: #666;
+        margin-top: 2px;
+    }
+
+    .edu-time {
+        font-size: 0.9rem;
+        color: #999;
+    }
+
+    .right-panel {
+        flex: 0 0 40%;
+        height: calc(100vh - 80px);
+        position: sticky;
+        top: 80px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+    }
+
+    .portrait {
+        width: auto;
+        height: 90vh;
+        max-width: 100%;
+        object-fit: contain;
+        object-position: bottom;
+        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .portrait:hover {
+        transform: scale(1.02);
+    }
+
+    #gallery {
+        display: none;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .layout {
+        animation: fadeIn 0.8s ease-out;
+    }
+
+    .left-panel > * {
+        opacity: 0;
+        animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    .left-panel > *:nth-child(1) { animation-delay: 0.1s; }
+    .left-panel > *:nth-child(2) { animation-delay: 0.2s; }
+    .left-panel > *:nth-child(3) { animation-delay: 0.3s; }
+    .left-panel > *:nth-child(4) { animation-delay: 0.4s; }
+    .left-panel > *:nth-child(5) { animation-delay: 0.5s; }
+
+    .right-panel {
+        opacity: 0;
+        animation: fadeInUp 0.6s ease-out 0.3s forwards;
+    }
+
+    @media (max-width: 900px) {
+        .layout {
+            flex-direction: column-reverse;
+            display: flex;
+        }
+        .left-panel {
+            flex: none;
+            width: 100%;
+            padding: 4vh 6vw 10vh 6vw;
+        }
+        .header {
+            text-align: center;
+        }
+        .right-panel {
+            flex: none;
+            width: 100%;
+            height: 60vh;
+            position: relative;
+            top: 0;
+            justify-content: center;
+        }
+        .portrait {
+            height: 100%;
+        }
+        .awards-grid {
+            grid-template-columns: 1fr;
+        }
+        .edu-item {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+</style>

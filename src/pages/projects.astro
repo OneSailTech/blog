@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
 
 const projects = [
     {
@@ -36,23 +37,11 @@ const projects = [
 ---
 
 <Layout title="项目 - OneSail Tech" description="OneSail Tech 的开源项目与作品">
-<div id="container">
-    <div class="spotlight"></div>
-
-    <nav>
-        <a href="/" class="logo"><img src="/favicon.webp" alt="Logo" class="logo-img" /></a>
-        <div class="nav-links">
-            <a href="/">首页</a>
-            <a href="/posts">文章</a>
-            <a href="/projects" class="active">项目</a>
-            <a href="/tools">工具</a>
-            <a href="/about">关于</a>
-        </div>
-    </nav>
+    <Nav active="项目" />
 
     <main>
         <section id="projects-hero">
-            <h1>我的<span class="gradient-text">项目</span></h1>
+            <h1>我的项目</h1>
             <p class="subtitle">探索、创造与分享</p>
         </section>
 
@@ -70,121 +59,38 @@ const projects = [
                 </a>
             ))}
         </div>
-
-        <footer class="page-footer">
-            <a href="/" class="button primary">返回首页</a>
-        </footer>
     </main>
-</div>
 </Layout>
 
 <style>
-    :root {
-        --accent: #7c3aed;
-        --accent-gradient: linear-gradient(45deg, #7c3aed, #ff1fb1);
-        --bg-color: #0a0a0a;
-        --text-main: #ffffff;
-        --text-muted: #a1a1aa;
-    }
-
-    * {
-        box-sizing: border-box;
-    }
-
-    body {
-        color: var(--text-main);
-        font-family: sans-serif;
-        overflow-x: hidden;
-    }
-
-    #container {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        z-index: 1;
-    }
-
-    .spotlight {
-        position: fixed;
-        top: -30%;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 150vw;
-        height: 150vh;
-        background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.12) 0%, rgba(124, 58, 237, 0.03) 50%, rgba(0, 0, 0, 0) 80%);
-        z-index: -1;
-        pointer-events: none;
-    }
-
-    nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 2rem 10%;
-        animation: fadeInUp 0.8s ease-out;
-    }
-
-    .logo {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-    }
-
-    .logo-img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
-    }
-
-    .nav-links a {
-        color: var(--text-muted);
-        text-decoration: none;
-        margin-left: 2rem;
-        font-size: 0.9rem;
-        font-weight: 500;
-        transition: color 0.3s;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-        color: var(--text-main);
-    }
-
     main {
-        flex: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 2rem 1rem 4rem;
-        max-width: 1000px;
+        padding: 2rem 8vw 4rem;
+        max-width: 1100px;
         margin: 0 auto;
         width: 100%;
     }
 
     #projects-hero {
         text-align: center;
-        margin-bottom: 4rem;
+        margin-bottom: 3rem;
         animation: fadeInUp 0.8s ease-out;
     }
 
-    #projects-hero h1 {
-        font-size: clamp(2.5rem, 6vw, 3.5rem);
-        font-weight: 800;
-        margin-bottom: 1rem;
-    }
-
-    .gradient-text {
-        background: var(--accent-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+    h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 900;
+        letter-spacing: -2px;
+        line-height: 1.1;
+        margin-bottom: 0.8rem;
+        color: #000;
     }
 
     .subtitle {
         font-size: 1.1rem;
-        color: var(--text-muted);
+        color: #666;
     }
 
     .projects-grid {
@@ -196,31 +102,32 @@ const projects = [
     }
 
     .project-card {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 20px;
+        background: #fff;
+        border: 1px solid #eee;
+        border-radius: 16px;
         padding: 2rem;
         text-decoration: none;
-        color: var(--text-main);
+        color: #000;
         transition: all 0.35s;
         display: flex;
         flex-direction: column;
     }
 
     .project-card:hover {
-        border-color: rgba(124, 58, 237, 0.4);
+        border-color: #2563eb;
         transform: translateY(-4px);
-        box-shadow: 0 12px 40px rgba(124, 58, 237, 0.1);
+        box-shadow: 0 8px 24px rgba(37, 99, 235, 0.08);
     }
 
     .project-card h3 {
         font-size: 1.2rem;
         font-weight: 700;
         margin: 0 0 1rem 0;
+        color: #000;
     }
 
     .project-card p {
-        color: var(--text-muted);
+        color: #666;
         font-size: 0.95rem;
         line-height: 1.6;
         margin-bottom: 1.2rem;
@@ -236,47 +143,23 @@ const projects = [
 
     .tag {
         padding: 0.3rem 0.8rem;
-        border-radius: 20px;
+        border-radius: 50px;
         font-size: 0.75rem;
         font-weight: 600;
-        background: rgba(124, 58, 237, 0.1);
-        border: 1px solid rgba(124, 58, 237, 0.3);
-        color: #a78bfa;
+        background: #f0f4ff;
+        border: 1px solid #dbeafe;
+        color: #2563eb;
     }
 
     .view-project {
-        color: var(--accent);
+        color: #2563eb;
         font-size: 0.9rem;
         font-weight: 600;
         transition: color 0.3s;
     }
 
     .project-card:hover .view-project {
-        color: #a78bfa;
-    }
-
-    .page-footer {
-        margin-top: 4rem;
-        text-align: center;
-        animation: fadeInUp 0.8s ease-out 0.4s both;
-    }
-
-    .button {
-        padding: 0.8rem 2rem;
-        border-radius: 12px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.3s;
-    }
-
-    .button.primary {
-        background: var(--text-main);
-        color: var(--bg-color);
-    }
-
-    .button.primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+        color: #1d4ed8;
     }
 
     @keyframes fadeInUp {
@@ -290,9 +173,9 @@ const projects = [
         }
     }
 
-    @media (max-width: 768px) {
-        nav { padding: 1.5rem 5%; }
-        #projects-hero h1 { font-size: 2rem; }
+    @media (max-width: 900px) {
+        main { padding: 2rem 5vw 4rem; }
+        h1 { font-size: 2rem; }
         .projects-grid { grid-template-columns: 1fr; }
     }
 </style>

@@ -1,22 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
 import '../../styles/markdown.css';
 ---
 
 <Layout title="Markdown 阅读器 - OneSail Tech" description="上传并预览 Markdown 文档">
-<div id="container">
-    <div class="spotlight"></div>
-
-    <nav>
-        <a href="/" class="logo"><img src="/favicon.webp" alt="Logo" class="logo-img" /></a>
-        <div class="nav-links">
-            <a href="/">首页</a>
-            <a href="/posts">文章</a>
-            <a href="/projects">项目</a>
-            <a href="/tools" class="active">工具</a>
-            <a href="/about">关于</a>
-        </div>
-    </nav>
+    <Nav active="工具" />
 
     <main>
         <div class="back-link-wrapper">
@@ -24,7 +13,7 @@ import '../../styles/markdown.css';
         </div>
 
         <section id="tool-hero">
-            <h1>Markdown<span class="gradient-text">阅读器</span></h1>
+            <h1>Markdown 阅读器</h1>
             <p class="subtitle">上传 Markdown 文件，即时预览渲染效果</p>
         </section>
 
@@ -55,12 +44,8 @@ import '../../styles/markdown.css';
                 <textarea id="source-text" oninput="autoResize(this); updatePreview()"></textarea>
             </div>
         </div>
-
-        <footer class="page-footer">
-            <a href="/tools" class="button primary">返回工具列表</a>
-        </footer>
     </main>
-</div>
+</Layout>
 
 <script is:inline>
 const uploadArea = document.getElementById('upload-area');
@@ -268,86 +253,12 @@ function escapeHtml(text) {
 </script>
 
 <style>
-    :root {
-        --accent: #7c3aed;
-        --accent-gradient: linear-gradient(45deg, #7c3aed, #ff1fb1);
-        --bg-color: #0a0a0a;
-        --text-main: #ffffff;
-        --text-muted: #a1a1aa;
-    }
-
-    * {
-        box-sizing: border-box;
-    }
-
-    body {
-        color: var(--text-main);
-        font-family: sans-serif;
-        overflow-x: hidden;
-    }
-
-    #container {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        z-index: 1;
-    }
-
-    .spotlight {
-        position: fixed;
-        top: -30%;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 150vw;
-        height: 150vh;
-        background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.12) 0%, rgba(124, 58, 237, 0.03) 50%, rgba(0, 0, 0, 0) 80%);
-        z-index: -1;
-        pointer-events: none;
-    }
-
-    nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 2rem 10%;
-        animation: fadeInUp 0.8s ease-out;
-    }
-
-    .logo {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-    }
-
-    .logo-img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
-    }
-
-    .nav-links a {
-        color: var(--text-muted);
-        text-decoration: none;
-        margin-left: 2rem;
-        font-size: 0.9rem;
-        font-weight: 500;
-        transition: color 0.3s;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-        color: var(--text-main);
-    }
-
     main {
-        flex: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 2rem 1rem 4rem;
-        max-width: 800px;
+        padding: 2rem 8vw 4rem;
+        max-width: 900px;
         margin: 0 auto;
         width: 100%;
     }
@@ -359,7 +270,7 @@ function escapeHtml(text) {
     }
 
     .back-link {
-        color: var(--accent);
+        color: #2563eb;
         text-decoration: none;
         font-size: 0.9rem;
         font-weight: 600;
@@ -368,7 +279,7 @@ function escapeHtml(text) {
     }
 
     .back-link:hover {
-        color: #a78bfa;
+        color: #1d4ed8;
     }
 
     #tool-hero {
@@ -379,20 +290,15 @@ function escapeHtml(text) {
 
     #tool-hero h1 {
         font-size: clamp(2rem, 5vw, 3rem);
-        font-weight: 800;
-        margin-bottom: 1rem;
-    }
-
-    .gradient-text {
-        background: var(--accent-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        font-weight: 900;
+        letter-spacing: -1px;
+        margin-bottom: 0.8rem;
+        color: #000;
     }
 
     .subtitle {
         font-size: 1.1rem;
-        color: var(--text-muted);
+        color: #666;
     }
 
     .tool-container {
@@ -401,9 +307,9 @@ function escapeHtml(text) {
     }
 
     .upload-area {
-        background: rgba(255, 255, 255, 0.03);
-        border: 2px dashed rgba(255, 255, 255, 0.15);
-        border-radius: 20px;
+        background: #f9fafb;
+        border: 2px dashed #d1d5db;
+        border-radius: 16px;
         padding: 3rem 2rem;
         text-align: center;
         cursor: pointer;
@@ -412,23 +318,24 @@ function escapeHtml(text) {
 
     .upload-area:hover,
     .upload-area.drag-over {
-        border-color: var(--accent);
-        background: rgba(124, 58, 237, 0.05);
+        border-color: #2563eb;
+        background: #f0f4ff;
     }
 
     .upload-area svg {
-        color: var(--text-muted);
+        color: #999;
         margin-bottom: 1rem;
     }
 
     .upload-area p {
         font-size: 1.1rem;
         margin-bottom: 0.5rem;
+        color: #333;
     }
 
     .upload-hint {
         font-size: 0.85rem;
-        color: var(--text-muted);
+        color: #999;
     }
 
     .editor-toggle {
@@ -439,10 +346,10 @@ function escapeHtml(text) {
 
     .toggle-btn {
         padding: 0.6rem 1.5rem;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
         border-radius: 8px;
-        color: var(--text-muted);
+        color: #666;
         font-size: 0.9rem;
         font-weight: 600;
         cursor: pointer;
@@ -450,17 +357,16 @@ function escapeHtml(text) {
     }
 
     .toggle-btn.active {
-        background: var(--accent);
-        border-color: var(--accent);
+        background: #2563eb;
+        border-color: #2563eb;
         color: #fff;
     }
 
     .preview-container {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 24px;
+        background: #fff;
+        border: 1px solid #eee;
+        border-radius: 16px;
         padding: 3rem;
-        backdrop-filter: blur(10px);
     }
 
     .md-rendered {
@@ -469,11 +375,10 @@ function escapeHtml(text) {
     }
 
     .source-container {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 24px;
+        background: #fff;
+        border: 1px solid #eee;
+        border-radius: 16px;
         padding: 3rem;
-        backdrop-filter: blur(10px);
     }
 
     #source-text {
@@ -481,7 +386,7 @@ function escapeHtml(text) {
         min-height: 400px;
         background: transparent;
         border: none;
-        color: var(--text-main);
+        color: #000;
         font-family: 'JetBrains Mono', 'Fira Code', monospace;
         font-size: 0.9rem;
         line-height: 1.6;
@@ -489,30 +394,6 @@ function escapeHtml(text) {
     }
 
     #source-text:focus { outline: none; }
-
-    .page-footer {
-        margin-top: 4rem;
-        text-align: center;
-        animation: fadeInUp 0.8s ease-out 0.4s both;
-    }
-
-    .button {
-        padding: 0.8rem 2rem;
-        border-radius: 12px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.3s;
-    }
-
-    .button.primary {
-        background: var(--text-main);
-        color: var(--bg-color);
-    }
-
-    .button.primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
-    }
 
     @keyframes fadeInUp {
         from {
@@ -525,8 +406,8 @@ function escapeHtml(text) {
         }
     }
 
-    @media (max-width: 768px) {
-        nav { padding: 1.5rem 5%; }
+    @media (max-width: 900px) {
+        main { padding: 1.5rem 5vw 3rem; }
         #tool-hero h1 { font-size: 2rem; }
         .upload-area { padding: 2rem 1.5rem; }
         .preview-container, .source-container { padding: 1.5rem; border-radius: 16px; }
@@ -535,4 +416,3 @@ function escapeHtml(text) {
         .md-rendered h3 { font-size: 1.15rem; }
     }
 </style>
-</Layout>
