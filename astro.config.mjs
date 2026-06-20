@@ -1,7 +1,11 @@
 import { defineConfig } from 'astro/config';
 
+import cloudflare from '@astrojs/cloudflare';
+
 export default defineConfig({
-    devToolbar: {
-        enabled: false,
-    },
+  devToolbar: {
+      enabled: false,
+  },
+
+  adapter: cloudflare(),
 });
